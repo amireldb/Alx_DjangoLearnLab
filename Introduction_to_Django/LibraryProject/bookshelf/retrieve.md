@@ -1,2 +1,2 @@
-Book.objects.get(author = "George Orwell")
+Book.objects.get(title = "1984")
 <!-- <Book: Book object (1)> -->
