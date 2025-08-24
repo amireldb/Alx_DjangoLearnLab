@@ -2,99 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>List of Books</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        .container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #2c3e50;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .book-list {
-            list-style: none;
-            padding: 0;
-        }
-        .book-item {
-            background-color: #ecf0f1;
-            margin-bottom: 15px;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid #3498db;
-        }
-        .book-title {
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 5px;
-        }
-        .book-author {
-            color: #7f8c8d;
-            font-style: italic;
-        }
-        .back-link {
-            display: inline-block;
-            background-color: #27ae60;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            transition: background-color 0.3s;
-        }
-        .back-link:hover {
-            background-color: #219a52;
-        }
-        .stats {
-            background-color: #3498db;
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-    </style>
 </head>
 <body>
-    <div class="container">
-        <a href="{% url 'relationship_app:home' %}" class="back-link">← Back to Home</a>
-        
-        <h1>📖 Books Available</h1>
-        
-        <div class="stats">
-            <strong>{{ books.count }} book{{ books.count|pluralize }}</strong> in our collection
-        </div>
-        
-        {% if books %}
-            <ul class="book-list">
-                {% for book in books %}
-                <li class="book-item">
-                    <div class="book-title">{{ book.title }}</div>
-                    <div class="book-author">by {{ book.author.name }}</div>
-                </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <div class="book-item">
-                <p>No books available yet. <a href="/admin/">Add some books</a> to get started!</p>
-            </div>
-        {% endif %}
-        
-        <div style="text-align: center; margin-top: 30px;">
-            <a href="{% url 'relationship_app:library_list' %}" class="back-link">🏛️ View Libraries</a>
-        </div>
-    </div>
+    <h1>Books Available:</h1>
+    <ul>
+        {% for book in books %}
+        <li>{{ book.title }} by {{ book.author.name }}</li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
