@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libraries</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .library-list {
+            list-style: none;
+            padding: 0;
+        }
+        .library-item {
+            background-color: #ecf0f1;
+            margin-bottom: 20px;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #e74c3c;
+            transition: transform 0.2s;
+        }
+        .library-item:hover {
+            transform: translateX(5px);
+        }
+        .library-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .library-books {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+        .view-details {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9em;
+            transition: background-color 0.3s;
+        }
+        .view-details:hover {
+            background-color: #c0392b;
+        }
+        .back-link {
+            display: inline-block;
+            background-color: #27ae60;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+        .back-link:hover {
+            background-color: #219a52;
+        }
+        .stats {
+            background-color: #e74c3c;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'relationship_app:home' %}" class="back-link">← Back to Home</a>
+        
+        <h1>🏛️ Libraries</h1>
+        
+        <div class="stats">
+            <strong>{{ libraries.count }} librar{{ libraries.count|pluralize:"y,ies" }}</strong> in our system
+        </div>
+        
+        {% if libraries %}
+            <ul class="library-list">
+                {% for library in libraries %}
+                <li class="library-item">
+                    <div class="library-name">{{ library.name }}</div>
+                    <div class="library-books">
+                        {{ library.books.count }} book{{ library.books.count|pluralize }} available
+                    </div>
+                    <a href="{% url 'relationship_app:library_detail' library.pk %}" class="view-details">
+                        View Details
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <div class="library-item">
+                <p>No libraries available yet. <a href="/admin/">Add some libraries</a> to get started!</p>
+            </div>
+        {% endif %}
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="{% url 'relationship_app:list_books' %}" class="back-link">📖 View All Books</a>
+        </div>
+    </div>
+</body>
+</html>
