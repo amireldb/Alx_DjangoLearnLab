@@ -14,6 +14,7 @@ class Author(models.Model):
 class Book(models.Model):
     title = models.CharField(max_length=50)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    publication_year = models.IntegerField(default=2024)
     
     def __str__(self):
         return f"{self.title} by {self.author.name}"

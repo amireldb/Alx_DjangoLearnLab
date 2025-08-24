@@ -20,12 +20,12 @@ def create_sample_data():
     author2 = Author.objects.create(name="George R.R. Martin")
     author3 = Author.objects.create(name="Stephen King")
     
-    # Create books
-    book1 = Book.objects.create(title="Harry Potter and the Philosopher's Stone", author=author1)
-    book2 = Book.objects.create(title="Harry Potter and the Chamber of Secrets", author=author1)
-    book3 = Book.objects.create(title="A Game of Thrones", author=author2)
-    book4 = Book.objects.create(title="The Shining", author=author3)
-    book5 = Book.objects.create(title="It", author=author3)
+    # Create books with publication years
+    book1 = Book.objects.create(title="Harry Potter and the Philosopher's Stone", author=author1, publication_year=1997)
+    book2 = Book.objects.create(title="Harry Potter and the Chamber of Secrets", author=author1, publication_year=1998)
+    book3 = Book.objects.create(title="A Game of Thrones", author=author2, publication_year=1996)
+    book4 = Book.objects.create(title="The Shining", author=author3, publication_year=1977)
+    book5 = Book.objects.create(title="It", author=author3, publication_year=1986)
     
     # Create libraries
     library1 = Library.objects.create(name="Central Library")
