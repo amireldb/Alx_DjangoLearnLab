@@ -10,13 +10,13 @@ from .models import Librarian
 def list_books(request):
     """Function-based view that lists all books with their authors"""
     books = Book.objects.all().select_related('author')
-    return render(request, 'relationship_app/list_books.html', {'books': books})
+    return render(request, 'list_books.html', {'books': books})
 
 # Class-based view to display library details
 class LibraryDetailView(DetailView):
     """Class-based view that displays details for a specific library"""
     model = Library
-    template_name = 'relationship_app/library_detail.html'
+    template_name = 'library_detail.html'
     context_object_name = 'library'
     
     def get_context_data(self, **kwargs):
@@ -32,7 +32,7 @@ class LibraryDetailView(DetailView):
 class LibraryListView(ListView):
     """Class-based view that lists all libraries"""
     model = Library
-    template_name = 'relationship_app/library_list.html'
+    template_name = 'library_list.html'
     context_object_name = 'libraries'
     
     def get_queryset(self):
@@ -53,4 +53,4 @@ def home(request):
         'total_librarians': total_librarians,
         'recent_books': Book.objects.select_related('author').order_by('-id')[:5],
     }
-    return render(request, 'relationship_app/home.html', context)
+    return render(request, 'home.html', context)
